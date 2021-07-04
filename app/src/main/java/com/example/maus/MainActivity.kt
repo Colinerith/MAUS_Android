@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
+//
+//        setSupportActionBar(findViewById(R.id.appBarLayout3))
+//        supportActionBar?.elevation = 0f
+
         //val fab: FloatingActionButton = findViewById(R.id.fab)
 
 //        fab.setOnClickListener { view ->
