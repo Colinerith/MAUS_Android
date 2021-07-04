@@ -1,6 +1,8 @@
 package com.example.maus.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,15 +26,23 @@ class PlaceholderFragment : Fragment() {
         }
     }
 
+    @SuppressLint("ResourceType")
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_main, container, false)
-        val textView: TextView = root.findViewById(R.id.section_label)
-        pageViewModel.text.observe(viewLifecycleOwner, Observer<String> {
-            textView.text = it
-        })
+        var pos = arguments?.getInt(ARG_SECTION_NUMBER)
+        var root = inflater.inflate(R.layout.fragment_main, container, false)
+        when(pos){
+            1-> root = inflater.inflate(R.layout.fragment_switch, container, false)
+            2-> root = inflater.inflate(R.layout.fragment_alarm, container, false)
+            3-> root = inflater.inflate(R.layout.fragment_setting, container, false)
+        }
+
+//        val textView: TextView = root.findViewById(R.id.section_label)
+//        pageViewModel.text.observe(viewLifecycleOwner, Observer<String> {
+//            textView.text = it
+//        })
         return root
     }
 
@@ -42,6 +52,7 @@ class PlaceholderFragment : Fragment() {
          * fragment.
          */
         private const val ARG_SECTION_NUMBER = "section_number"
+
 
         /**
          * Returns a new instance of this fragment for the given section

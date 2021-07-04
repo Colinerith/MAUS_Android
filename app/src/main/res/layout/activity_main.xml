@@ -33,16 +33,19 @@
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:background="@android:color/transparent"
             android:backgroundTint="@android:color/transparent"
             android:elevation="0dp"
+            android:fontFamily="casual"
             android:gravity="center"
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
             android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -55,8 +58,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout3"
         app:tabSelectedTextColor="@color/black"
-        app:tabTextColor="@color/purple_200"
+        app:tabTextColor="@color/gray"
         app:tabIndicatorGravity="bottom"
-        app:tabIndicatorColor="@color/black"/>
+        app:tabIndicatorColor="@color/black"
+        app:tabTextAppearance="@style/tab_text"
+        app:tabIndicatorFullWidth="false"
+        app:tabRippleColor = "@null"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

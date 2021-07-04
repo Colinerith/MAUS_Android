@@ -23,4 +23,8 @@
     </style>
     <style name="Theme.MAUS.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.MAUS.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!-- TabLayout Tab 글꼴 변경-->
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">casual</item>
+    </style>
 </resources>
