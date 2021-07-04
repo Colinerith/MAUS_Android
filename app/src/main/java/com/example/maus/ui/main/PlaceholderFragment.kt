@@ -6,7 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -32,11 +34,17 @@ class PlaceholderFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         var pos = arguments?.getInt(ARG_SECTION_NUMBER)
-        var root = inflater.inflate(R.layout.fragment_main, container, false)
+        var root = inflater.inflate(R.layout.fragment_switch, container, false)
         when(pos){
             1-> root = inflater.inflate(R.layout.fragment_switch, container, false)
             2-> root = inflater.inflate(R.layout.fragment_alarm, container, false)
             3-> root = inflater.inflate(R.layout.fragment_setting, container, false)
+        }
+
+        val switchBtn = root.findViewById<ImageView>(R.id.imageView)
+        switchBtn.setOnClickListener {
+            Toast.makeText(this.context, "ㅇㅇ", Toast.LENGTH_SHORT).show();
+            switchBtn.setImageResource(R.drawable.switch_on_350)
         }
 
 //        val textView: TextView = root.findViewById(R.id.section_label)
