@@ -37,13 +37,13 @@ class PlaceholderFragment : Fragment() {
         var root = inflater.inflate(R.layout.fragment_switch, container, false)
         when(pos){
             1-> root = inflater.inflate(R.layout.fragment_switch, container, false)
-            2-> root = inflater.inflate(R.layout.fragment_alarm, container, false)
+            2-> root = inflater.inflate(R.layout.fragment_timer, container, false)
             3-> root = inflater.inflate(R.layout.fragment_setting, container, false)
         }
 
         val switchBtn = root.findViewById<ImageView>(R.id.imageView)
         switchBtn.setOnClickListener {
-            Toast.makeText(this.context, "ㅇㅇ", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this.context, "ㅇㅇ", Toast.LENGTH_SHORT).show();
             switchBtn.setImageResource(R.drawable.switch_on_350)
         }
 

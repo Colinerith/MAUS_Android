@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "64290686932",
+    "firebase_url": "https://maus---myautoswitch-default-rtdb.firebaseio.com",
+    "project_id": "maus---myautoswitch",
+    "storage_bucket": "maus---myautoswitch.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64290686932:android:04cb68815ece3530917841",
+        "android_client_info": {
+          "package_name": "com.example.maus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64290686932-n6vmsv6u27qkhsq9aupl1gvfco2oi8hj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maus",
+            "certificate_hash": "ae104845f09cc360111c9a72269fdf358d43e50f"
+          }
+        },
+        {
+          "client_id": "64290686932-h2em7v9nsdq2ia8su655bg72gil81ou0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtFtwk_k7brVN0r6430ybtrMlVJnN9vD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64290686932-h2em7v9nsdq2ia8su655bg72gil81ou0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

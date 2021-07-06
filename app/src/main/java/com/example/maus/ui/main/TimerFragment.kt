@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.maus.R
 
-class AlarmFragment : Fragment() {
+class TimerFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_alarm, container, false)
+        return inflater.inflate(R.layout.fragment_timer, container, false)
     }
 }

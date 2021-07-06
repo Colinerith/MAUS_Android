@@ -1,19 +1,12 @@
 package com.example.maus
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import android.widget.ImageButton
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import com.example.maus.ui.main.SectionsPagerAdapter
-import com.example.maus.ui.main.SwitchFragment2
 
 class MainActivity : AppCompatActivity() {
     private final var FINISH_INTERVAL_TIME: Long = 2000
