@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -27,7 +28,7 @@ class TimerFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_timer, container, false)
 
-        val addBtn = root.findViewById<Button>(R.id.addBtn)
+        val addBtn = root.findViewById<ImageButton>(R.id.addBtn)
         addBtn.setOnClickListener {
 //            //navController.navigate(R.id.action_first2_to_second2, bundle)
 //            findNavController().navigate(R.id.action_timerFragment_to_timerSettingFragment)

@@ -10,33 +10,24 @@
     android:paddingTop="16dp"
     android:paddingBottom="16dp">
 
+
     <TimePicker
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numbersSelectorColor="@android:color/transparent"
+        android:layout_marginTop="16dp"
+        android:numbersSelectorColor="#D6D6D6"
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:calendarViewShown="false"
-        android:datePickerMode="spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/cancelBtn"
-        android:layout_width="112dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="48dp"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="568dp"
         android:background="@android:color/transparent"
         android:fontFamily="casual"
@@ -47,34 +38,36 @@
 
     <Button
         android:id="@+id/saveBtn"
-        android:layout_width="100dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
         android:layout_marginTop="568dp"
+        android:layout_marginEnd="40dp"
         android:background="@android:color/transparent"
         android:elevation="0dp"
         android:fontFamily="casual"
         android:text="save"
         android:textColor="@color/black"
         app:iconPadding="0dp"
-        app:layout_constraintStart_toEndOf="@+id/cancelBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="38dp"
         android:text="Tomorrow-Thu, Jul 8"
-        app:layout_constraintTop_toBottomOf="@+id/datePicker"
-        tools:layout_editor_absoluteX="60dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
 
     <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginEnd="112dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePicker">
+        app:layout_constraintTop_toBottomOf="@+id/time">
 
         <ToggleButton
             android:id="@+id/toggleButton"
@@ -90,5 +83,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </com.google.android.material.chip.ChipGroup>
+
+    <Button
+        android:id="@+id/dateBtn"
+        android:layout_width="43dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="292dp"
+        android:text="D"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

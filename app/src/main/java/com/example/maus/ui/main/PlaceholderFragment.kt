@@ -41,11 +41,11 @@ class PlaceholderFragment : Fragment() {
             3-> root = inflater.inflate(R.layout.fragment_setting, container, false)
         }
 
-        val switchBtn = root.findViewById<ImageView>(R.id.imageView)
-        switchBtn.setOnClickListener {
-            //Toast.makeText(this.context, "ㅇㅇ", Toast.LENGTH_SHORT).show();
-            switchBtn.setImageResource(R.drawable.switch_on_350)
-        }
+//        val switchBtn = root.findViewById<ImageView>(R.id.imageView)
+//        switchBtn.setOnClickListener {
+//            //Toast.makeText(this.context, "ㅇㅇ", Toast.LENGTH_SHORT).show();
+//            switchBtn.setImageResource(R.drawable.switch_on)
+//        }
 
 //        val textView: TextView = root.findViewById(R.id.section_label)
 //        pageViewModel.text.observe(viewLifecycleOwner, Observer<String> {
