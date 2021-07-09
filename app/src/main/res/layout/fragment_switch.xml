@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp"
     tools:context=".ui.main.SwitchFragment">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="401dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/switch_off" />
+        android:cropToPadding="true"
+        android:src="@drawable/switch_off_gray" />
 
 </FrameLayout>

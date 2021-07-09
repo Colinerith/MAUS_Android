@@ -10,7 +10,8 @@ import kotlin.properties.Delegates
 
 class SwitchFragment : Fragment() {
     private var database = FirebaseDatabase.getInstance()
-    private var state by Delegates.notNull<String>()
+    private lateinit var state:String
+    private var initialized = false // state값 초기화 이후에 사용할 수 있도록
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,15 +22,16 @@ class SwitchFragment : Fragment() {
         val switchBtn = root.findViewById<ImageView>(R.id.imageView)
         val ref : DatabaseReference = database.getReference("User/a")
 
-        // 한 번만 읽기
-        readOnce(ref, switchBtn)
+//        // 한 번만 읽기
+//        readOnce(ref, switchBtn)
 
         // 영구 리스너로 이벤트 발생 시마다 읽기 (페이지 진입 시에도 읽음)
         setListener(ref, switchBtn)
 
         // 스위치 이미지 터치 시  database state 변경
         switchBtn.setOnClickListener {
-            firebaseStateToggle(ref)
+            if(initialized) // state 초기화 전까지는 상태 변경 불가
+                firebaseStateToggle(ref)
         }
 
         return root
@@ -40,6 +42,7 @@ class SwitchFragment : Fragment() {
         ref.child("state").get().addOnSuccessListener {
             Log.i("firebaseStart", "Got value ${it.value}")
             state = it.value as String
+            initialized = true
             switchImageToggle(switchBtn)
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
@@ -55,6 +58,7 @@ class SwitchFragment : Fragment() {
                 ref.child("state").get().addOnSuccessListener {
                     Log.i("firebase", "Got value ${it.value}")
                     state = it.value as String
+                    initialized = true
                     // 스위치 이미지 변경
                     switchImageToggle(switchBtn)
                 }.addOnFailureListener{
@@ -71,9 +75,9 @@ class SwitchFragment : Fragment() {
     // 스위치의 이미지 변경
     private fun switchImageToggle(switchBtn:ImageView){
         if(state == "1")
-            switchBtn.setImageResource(R.drawable.switch_on)
+            switchBtn.setImageResource(R.drawable.switch_on_gray)
         else
-            switchBtn.setImageResource(R.drawable.switch_off)
+            switchBtn.setImageResource(R.drawable.switch_off_gray)
     }
     
     // database state 변경
