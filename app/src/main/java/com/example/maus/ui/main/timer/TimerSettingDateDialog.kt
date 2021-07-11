@@ -1,4 +1,4 @@
-package com.example.maus.ui.main
+package com.example.maus.ui.main.timer
 
 import android.app.Dialog
 import android.content.Context

@@ -1,7 +1,6 @@
-package com.example.maus.ui.main
+package com.example.maus.ui.main.timer
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,6 +40,7 @@ class TimerFragment : Fragment() {
         addBtn.setOnClickListener {
             val dialog = TimerSettingDialog(root.context)
             dialog.create()
+            dialog.showDialog()
         }
 
         return root
@@ -48,7 +48,6 @@ class TimerFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         requireView().findViewById<RecyclerView>(R.id.timerRecyclerView).layoutManager =
             GridLayoutManager(
                 requireContext(),
@@ -63,19 +62,9 @@ class TimerFragment : Fragment() {
 
         timerRecyclerViewAdapter.submitList(timerList)
 
-
         setListener(ref)
 
-
-
-//        favoritesRecyclerViewAdapter.setOnItemClickListener(object : FavoritesRecyclerViewAdapter.OnItemClickListener{
-//            override fun onItemClick(v: View, data: Int, pos : Int) {
-//                Intent(activity, CourseDetailActivity::class.java).apply {
-//                    putExtra("id", data)
-//                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//                }.run { startActivity(this) }
-//            }
-//        })
+        //timerRecyclerViewAdapter.setOnItemClickListener()
     }
 
     private fun setListener(ref : DatabaseReference){
@@ -92,10 +81,13 @@ class TimerFragment : Fragment() {
                     //자식들을 하나씩 리스트에 넣음
                     for (chi in dataSnapshot.children){
                         Log.i("firebase", "child ${chi.key}: $chi")
-                        timerList.add(TimerItem(chi.child("date").value as String?,
-                                chi.child("day").value as String?,
+                        timerList.add(TimerItem(
+                                chi.key as String,
+                                chi.child("date").value as String,
+                                chi.child("day").value as String,
                                 chi.child("time").value as String,
-                                chi.child("on").value as String))
+                                chi.child("on").value as String,
+                                chi.child("turningOn").value as String))
                     }
                     Log.i("firebase", "arr: $timerList")
                     timerRecyclerViewAdapter.submitList(timerList)

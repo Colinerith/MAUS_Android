@@ -1,6 +1,6 @@
-package com.example.maus
+package com.example.maus.data
 
-data class Info(
+data class UserItem(
     var email:String,
     var location: String,
     var passWord: String,

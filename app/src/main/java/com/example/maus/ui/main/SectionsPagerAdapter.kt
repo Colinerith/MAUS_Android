@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.maus.R
+import com.example.maus.ui.main.timer.TimerFragment
 
 private val TAB_TITLES = arrayOf(
         R.string.tab_text_1,
