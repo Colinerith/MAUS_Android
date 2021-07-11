@@ -3,7 +3,7 @@
     <corners android:radius="14dp" />
     <size
         android:width="10dp"
-        android:height="30dp" />
+        android:height="26dp" />
 
 <!--    테두리-->
     <stroke

@@ -14,7 +14,7 @@
     <TimePicker
         android:id="@+id/time"
         android:layout_width="324dp"
-        android:layout_height="149dp"
+        android:layout_height="0dp"
         android:layout_marginTop="4dp"
         android:numbersSelectorColor="#D6D6D6"
         android:timePickerMode="spinner"
@@ -27,7 +27,7 @@
         android:id="@+id/saveBtn"
         android:layout_width="140dp"
         android:layout_height="50dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginTop="452dp"
         android:layout_marginEnd="28dp"
         android:background="@android:color/transparent"
         android:elevation="0dp"
@@ -41,8 +41,8 @@
         android:id="@+id/cancelBtn"
         android:layout_width="140dp"
         android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="452dp"
         android:background="@android:color/transparent"
         android:text="@string/cancel"
         android:textColor="@color/black"
@@ -96,14 +96,26 @@
             android:layout_height="wrap_content" />
     </com.google.android.material.chip.ChipGroup>
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="376dp"
+        android:text="@string/setting_action"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="3dp">
 
         <RadioButton
             android:id="@+id/radioButtonOn"
@@ -111,7 +123,7 @@
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
             android:text="@string/on"
-            android:theme="@style/CustomRadioButton"/>
+            android:theme="@style/CustomRadioButton" />
 
         <RadioButton
             android:id="@+id/radioButtonOff"
@@ -119,19 +131,8 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:text="@string/off"
-            android:theme="@style/CustomRadioButton"/>
+            android:theme="@style/CustomRadioButton" />
 
     </RadioGroup>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="296dp"
-        android:text="@string/setting_action"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

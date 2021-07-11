@@ -56,9 +56,9 @@ class TimerFragment : Fragment() {
                 false
             )
         requireView().findViewById<RecyclerView>(R.id.timerRecyclerView).adapter = this.timerRecyclerViewAdapter
-        requireView().findViewById<RecyclerView>(R.id.timerRecyclerView).addItemDecoration(
-            DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
-        )
+//        requireView().findViewById<RecyclerView>(R.id.timerRecyclerView).addItemDecoration(
+//            DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
+//        ) // 구분선 넣기
 
         timerRecyclerViewAdapter.submitList(timerList)
 
