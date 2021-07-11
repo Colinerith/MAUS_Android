@@ -34,7 +34,9 @@ class TimerSettingDialog(context: Context) {
         datedayTextView = dialog.findViewById(R.id.settingDateDayTextView)
         radioButtonOn = dialog.findViewById(R.id.radioButtonOn)
         radioButtonOff = dialog.findViewById(R.id.radioButtonOff)
-//        radioButtonOn.isChecked = true
+        radioButtonOn.setBackgroundColor(Color.rgb(0,0,0))
+        radioButtonOff.setBackgroundColor(Color.rgb(0,0,0))
+        radioButtonOn.isChecked = true
 //        radioButtonOff.isChecked = false
         days = listOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
 

@@ -1,6 +1,7 @@
 package com.example.maus.ui.main.timer
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +35,8 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
 
     // 생성된 View에 보여줄 데이터 결정
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        viewHolder.state.setBackgroundColor(Color.rgb(0,0,0))
+
         val time = timerList[position].time
         val date = timerList[position].date
         val day = timerList[position].day
