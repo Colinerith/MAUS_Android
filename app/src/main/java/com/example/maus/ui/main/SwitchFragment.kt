@@ -12,6 +12,7 @@ class SwitchFragment : Fragment() {
     private var database = FirebaseDatabase.getInstance()
     private lateinit var state:String
     private var initialized = false // state값 초기화 이후에 사용할 수 있도록
+    private var path = "User/a"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,7 +21,7 @@ class SwitchFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_switch, container, false)
         val switchBtn = root.findViewById<ImageView>(R.id.imageView)
-        val ref : DatabaseReference = database.getReference("User/a")
+        val ref : DatabaseReference = database.getReference(path)
 
 //        // 한 번만 읽기
 //        readOnce(ref, switchBtn)

@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TimePicker
 import android.widget.Toast
 import com.example.maus.R
@@ -37,13 +38,14 @@ class TimerSettingDialog(context: Context) {
             Toast.makeText(context,"${timePicker.hour} : ${timePicker.minute}", Toast.LENGTH_SHORT).show()
         }
 
-        val dateBtn = dialog.findViewById<Button>(R.id.dateBtn)
+        val dateBtn = dialog.findViewById<ImageButton>(R.id.dateBtn)
         dateBtn.setOnClickListener{
             val dialog2 = TimerSettingDateDialog(context)
             dialog2.create()
         }
 
         //확인버튼 누르면 timer페이지 갱신해야됨
+        // 이벤트 리스너 달아놓으면 안 해도 될듯?
 
         dialog.show()
     }
