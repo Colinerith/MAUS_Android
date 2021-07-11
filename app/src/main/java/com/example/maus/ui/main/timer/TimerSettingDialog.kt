@@ -34,8 +34,8 @@ class TimerSettingDialog(context: Context) {
         datedayTextView = dialog.findViewById(R.id.settingDateDayTextView)
         radioButtonOn = dialog.findViewById(R.id.radioButtonOn)
         radioButtonOff = dialog.findViewById(R.id.radioButtonOff)
-        radioButtonOn.setBackgroundColor(Color.rgb(0,0,0))
-        radioButtonOff.setBackgroundColor(Color.rgb(0,0,0))
+//        radioButtonOn.setBackgroundColor(Color.rgb(0,0,0))
+//        radioButtonOff.setBackgroundColor(Color.rgb(0,0,0))
         radioButtonOn.isChecked = true
 //        radioButtonOff.isChecked = false
         days = listOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
@@ -69,19 +69,21 @@ class TimerSettingDialog(context: Context) {
     }
 
     // 리스트에서 아이템을 클릭해 다이얼로그 띄웠을 경우 값 세팅
-    fun setting(time:String, date:String, day:String, turningOn:Boolean){
+    fun setting(hour:Int, minute:Int, date:String, day:String, turningOn:Boolean){
         create()
 
-        timePicker.hour = time.substringBefore(':').toInt()
-        timePicker.minute = time.substringAfter(':').toInt()
+        timePicker.hour = hour
+        timePicker.minute = minute
         if(date != "null")
             datedayTextView.text = date
         else {
             // date는 달력에서 받아옴. 기본값은 '오늘'
             // 칩 day값에 따라 세팅
             var dayStr = ""
-            for (i in 0..6){
-                if (day[i] == '1') dayStr += days[i] + ", "
+            if(day == "1111111") dayStr = "Everyday"
+            else{
+                for (i in 0..6)
+                    if (day[i] == '1') dayStr += days[i] + ", "
             }
             datedayTextView.text = dayStr.substringBeforeLast(',')
         }

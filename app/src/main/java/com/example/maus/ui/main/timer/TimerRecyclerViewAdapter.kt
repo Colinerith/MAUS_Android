@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.res.TypedArrayUtils.getString
@@ -19,9 +20,10 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var timeTextView: TextView = view.findViewById(R.id.timeTextView)
         var dateDayTextView: TextView = view.findViewById(R.id.dateDayTextView)
-        var state: SwitchCompat = view.findViewById(R.id.onoffSwitch)
+        var state: Switch = view.findViewById(R.id.onoffSwitch)
         var actionTextView: TextView = view.findViewById(R.id.actionTextView)
         var context: Context = view.context
+        var days = listOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
     }
 
     // 보여줄 아이템 개수만큼 View 생성
@@ -35,22 +37,32 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
 
     // 생성된 View에 보여줄 데이터 결정
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.state.setBackgroundColor(Color.rgb(0,0,0))
-
-        val time = timerList[position].time
-        val date = timerList[position].date
+        val hour = timerList[position].hour
+        val minute = timerList[position].minute
+        val time = if(hour.toInt() > 12) {"${(hour.toInt() - 12)}:$minute PM"}
+                    else "$hour:$minute AM"
         val day = timerList[position].day
-        val dateDay = if (date != "null") timerList[position].date else day
+        val date = timerList[position].date
+        var dateDay = ""
+        if (date != "null") dateDay = date
+        else {
+            if(day == "1111111") dateDay = "Everyday"
+            else{
+                var dayStr = ""
+                for (i in 0..6)
+                    if (day[i] == '1') dayStr += viewHolder.days[i] + ", "
+                dateDay = dayStr.substringBeforeLast(",")
+            }
+        }
         val state = timerList[position].on == "1"
         val turningOn = timerList[position].turningOn == "1"
         val actionText =
             if (turningOn) viewHolder.context.getString(R.string.turningOn)
             else viewHolder.context.getString(R.string.turningOff)
 
-
         viewHolder.itemView.setOnClickListener {
             val dialog = TimerSettingDialog(viewHolder.context)
-            dialog.setting(time, date, day, turningOn)
+            dialog.setting(hour.toInt(), minute.toInt(), date, day, turningOn)
         }
     
         // 타이머 시간

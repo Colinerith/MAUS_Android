@@ -82,12 +82,13 @@ class TimerFragment : Fragment() {
                     for (chi in dataSnapshot.children){
                         Log.i("firebase", "child ${chi.key}: $chi")
                         timerList.add(TimerItem(
-                                chi.key as String,
-                                chi.child("date").value as String,
-                                chi.child("day").value as String,
-                                chi.child("time").value as String,
-                                chi.child("on").value as String,
-                                chi.child("turningOn").value as String))
+                            chi.key as String,
+                            chi.child("date").value as String,
+                            chi.child("day").value as String,
+                            chi.child("hour").value as String,
+                            chi.child("minute").value as String,
+                            chi.child("on").value as String,
+                            chi.child("turningOn").value as String))
                     }
                     Log.i("firebase", "arr: $timerList")
                     timerRecyclerViewAdapter.submitList(timerList)
