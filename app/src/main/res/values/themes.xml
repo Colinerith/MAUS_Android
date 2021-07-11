@@ -29,4 +29,9 @@
         <item name="android:fontFamily">casual</item>
     </style>
 
+    <style name="CustomRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
+    </style>
+
 </resources>

@@ -110,14 +110,16 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
-            android:text="@string/on" />
+            android:text="@string/on"
+            android:theme="@style/CustomRadioButton"/>
 
         <RadioButton
             android:id="@+id/radioButtonOff"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
-            android:text="@string/off" />
+            android:text="@string/off"
+            android:theme="@style/CustomRadioButton"/>
 
     </RadioGroup>
 
