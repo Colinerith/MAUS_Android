@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 //import androidx.navigation.NavController
@@ -43,6 +42,7 @@ class TimerFragment : Fragment() {
             dialog.showDialog()
         }
 
+//        root.findViewById<layout>()
         return root
     }
 
@@ -59,8 +59,17 @@ class TimerFragment : Fragment() {
 //        requireView().findViewById<RecyclerView>(R.id.timerRecyclerView).addItemDecoration(
 //            DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
 //        ) // 구분선 넣기
+//
+//        Log.d("count:", timerRecyclerViewAdapter.itemCount.toString())
+//        if(timerRecyclerViewAdapter.itemCount == 0){
+//            view?.findViewById<View>(R.id.no_timers_layout)?.visibility = View.VISIBLE
+//        }
+//        else{
+//            view?.findViewById<View>(R.id.no_timers_layout)?.visibility = View.GONE
+//        }
 
         timerRecyclerViewAdapter.submitList(timerList)
+
 
         setListener(ref)
 
@@ -88,11 +97,14 @@ class TimerFragment : Fragment() {
                             chi.child("hour").value as String,
                             chi.child("minute").value as String,
                             chi.child("state").value as String,
-                            chi.child("turningOn").value as String))
+                            chi.child("turningOn").value as Boolean))
                     }
                     Log.i("firebase", "arr: $timerList")
                     timerRecyclerViewAdapter.submitList(timerList)
                     timerRecyclerViewAdapter.notifyDataSetChanged()
+                }
+                else{
+                    view?.findViewById<View>(R.id.no_timers_layout)?.visibility = View.VISIBLE
                 }
 
 //                ref.child("state").get().addOnSuccessListener {

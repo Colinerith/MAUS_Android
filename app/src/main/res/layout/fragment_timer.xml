@@ -37,10 +37,7 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <include
-        layout="@layout/fragment_no_timer"
-        app:layout_anchor="@+id/constraintLayout"
-        app:layout_anchorGravity="center" />
+    <include layout="@layout/fragment_no_timer" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

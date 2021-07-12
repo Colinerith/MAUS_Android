@@ -51,7 +51,7 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
         if (date != "null") dateDay = date
         else {
             if(day == "1111111") dateDay = "Everyday"
-            else{
+            else if (day != null){
                 var dayStr = ""
                 for (i in 0..6)
                     if (day[i] == '1') dayStr += viewHolder.days[i] + ", "
@@ -59,7 +59,7 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
             }
         }
         var state = timerList[position].state == "1"
-        val turningOn = timerList[position].turningOn == "1"
+        val turningOn = timerList[position].turningOn
         val actionText =
             if (turningOn) viewHolder.context.getString(R.string.turningOn)
             else viewHolder.context.getString(R.string.turningOff)
@@ -84,7 +84,8 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
         // 아이템 클릭
         viewHolder.itemView.setOnClickListener {
             val dialog = TimerSettingDialog(viewHolder.context)
-            dialog.setting(hour.toInt(), minute.toInt(), date, day, turningOn)
+            dialog.setting(hour.toInt(), minute.toInt(), date, day, turningOn, timerList[position].key)
+
         }
     
         // 타이머 시간
