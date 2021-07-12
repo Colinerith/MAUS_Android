@@ -58,10 +58,11 @@ class TimerSettingDialog(context: Context) {
                 for(j in 0..6){
                     if (chips[j].isChecked) dayStr += days[j] + " "
                 }
-                if(dayStr != "")
-                    datedayTextView.text = dayStr
-                else if(dayStr == "Sun Mon Tue Wed Thu Fri Sat ")
+                Log.d("setting",dayStr)
+                if(dayStr == "Sun Mon Tue Wed Thu Fri Sat ")
                     datedayTextView.text = "Everyday"
+                else if(dayStr != "")
+                    datedayTextView.text = dayStr
                 else
                     datedayTextView.text = "2020.1.1"
             }
@@ -108,6 +109,7 @@ class TimerSettingDialog(context: Context) {
             }
 
             dialog.dismiss()
+            Toast.makeText(dialog.context, "Saved.", Toast.LENGTH_SHORT).show()
         }
 
         // 날짜를 지정할 수 있는 달력 버튼
@@ -132,7 +134,7 @@ class TimerSettingDialog(context: Context) {
             // date는 달력에서 받아옴. 기본값은 '오늘'. 칩 day 값에 따라 세팅
             var dayStr = ""
             if(day == "1111111") dayStr = "Everyday"
-            else{
+            else {
                 for (i in 0..6)
                     if (day[i] == '1') dayStr += days[i] + ", "
             }
@@ -144,28 +146,17 @@ class TimerSettingDialog(context: Context) {
         showDialog()
     }
 
-    fun getDialogData(): TimerItem {
+    private fun getDialogData(): TimerItem {
         val date = "2021.1.1" //
         var day = "" //
         val hour = timePicker.hour.toString()
         val minute = timePicker.minute.toString()
-        val state = "1" //
+        val turningOn = radioButtonOn.isChecked
 
-        for(i in 0..6){
-            if(chips[i].isChecked) day+="1" else "0"
-        }
+        for(i in 0..6)
+            day += if(chips[i].isChecked) "1" else "0"
 
-//        when(chipGroup.checkedChipId){
-//            R.id.sunChip-> Log.d("setting: ","sun")
-//            R.id.monChip-> Log.d("setting: ","m")
-//            R.id.tueChip-> Log.d("setting: ","tn")
-//            R.id.wedChip-> Log.d("setting: ","w")
-//            R.id.thuChip-> Log.d("setting: ","t")
-//            R.id.friChip-> Log.d("setting: ","f")
-//            R.id.satChip-> Log.d("setting: ","s")
-//        }
-
-        return TimerItem("", date, day, hour, minute, state, true)
+        return TimerItem("", date, day, hour, minute, "1", turningOn)
     }
 
     fun showDialog(){

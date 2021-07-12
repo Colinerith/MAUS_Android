@@ -35,13 +35,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if(supportFragmentManager.backStackEntryCount == 0) {
-            val tempTime = System.currentTimeMillis();
+            val tempTime = System.currentTimeMillis()
             val intervalTime = tempTime - backPressedTime;
             if (intervalTime in 0..FINISH_INTERVAL_TIME) {
-                super.onBackPressed();
+                super.onBackPressed()
             } else {
-                backPressedTime = tempTime;
-                Toast.makeText(this, "버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+                backPressedTime = tempTime
+                Toast.makeText(this, "버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
                 return
             }
         }

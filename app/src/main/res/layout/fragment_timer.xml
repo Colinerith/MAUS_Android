@@ -22,7 +22,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/add_timer"
             android:scaleType="centerInside"
-            android:src="@drawable/add_thin"
+            android:src="@drawable/add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
