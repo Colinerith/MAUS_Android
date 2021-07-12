@@ -41,4 +41,9 @@
 <!--        <item name="android:track">@drawable/switch_track</item>-->
 <!--    </style>-->
 
+<!--&lt;!&ndash;    커스텀 칩&ndash;&gt;-->
+<!--    <style name="CustomChipChoice" parent="@style/Widget.MaterialComponents.Chip.Choice">-->
+<!--        <item name="chipBackgroundColor">@color/gray</item>-->
+<!--    </style>-->
+
 </resources>
