@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
+    android:layout_marginLeft="24dp"
+    android:layout_marginRight="24dp"
     android:background="@drawable/dialog_round_border"
+    android:paddingLeft="16dp"
     android:paddingTop="16dp"
+    android:paddingRight="16dp"
     android:paddingBottom="16dp">
 
 
@@ -24,37 +26,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/cancelBtn"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="496dp"
+        android:layout_marginEnd="30dp"
+        android:background="@android:color/transparent"
+        android:text="@string/cancel"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/saveBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/saveBtn"
         android:layout_width="140dp"
         android:layout_height="50dp"
-        android:layout_marginTop="452dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="496dp"
         android:background="@android:color/transparent"
         android:elevation="0dp"
         android:text="@string/save"
         android:textColor="@color/black"
         app:iconPadding="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/cancelBtn"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="452dp"
-        android:background="@android:color/transparent"
-        android:text="@string/cancel"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cancelBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/dateBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="56dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time"
@@ -64,11 +67,12 @@
         android:id="@+id/settingDateDayTextView"
         android:layout_width="wrap_content"
         android:layout_height="27dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Tomorrow-Thu, Jul 8"
         android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time" />
 
@@ -77,35 +81,82 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="204dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingDateDayTextView">
-
-        <ToggleButton
-            android:id="@+id/toggleButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:text="ToggleButton"
-            android:textOff="S"
-            android:textOn="O" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.chip.ChipGroup>
+            android:layout_height="wrap_content"
+            android:text="S"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="12sp"
+            app:chipIconSize="16dp"
+            app:chipMinTouchTargetSize="16dp"
+            app:closeIconSize="16dp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="376dp"
-        android:text="@string/setting_action"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M"
+            android:textSize="12sp"
+            app:chipIconSize="16dp"
+            app:chipMinTouchTargetSize="16dp"
+            app:closeIconSize="16dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="T"
+            android:textSize="12sp"
+            app:chipIconSize="16dp"
+            app:chipMinTouchTargetSize="16dp"
+            app:closeIconSize="16dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="W"
+            android:textSize="12sp"
+            app:chipIconSize="16dp"
+            app:chipMinTouchTargetSize="16dp"
+            app:closeIconSize="16dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="T"
+            android:textSize="12sp"
+            app:chipIconSize="16dp"
+            app:chipMinTouchTargetSize="16dp"
+            app:closeIconSize="16dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="F"
+            android:textSize="12sp"
+            app:chipIconSize="16dp"
+            app:chipMinTouchTargetSize="16dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="12sp"
+            app:chipIconSize="16dp"
+            app:chipMinTouchTargetSize="16dp"
+            app:closeIconSize="16dp" />
+
+    </com.google.android.material.chip.ChipGroup>
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -115,7 +166,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:layout_editor_absoluteX="3dp">
+        tools:layout_editor_absoluteX="8dp">
 
         <RadioButton
             android:id="@+id/radioButtonOn"
@@ -134,5 +185,15 @@
             android:theme="@style/CustomRadioButton" />
 
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="396dp"
+        android:text="@string/setting_action"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

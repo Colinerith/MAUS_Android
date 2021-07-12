@@ -87,7 +87,7 @@ class TimerFragment : Fragment() {
                             chi.child("day").value as String,
                             chi.child("hour").value as String,
                             chi.child("minute").value as String,
-                            chi.child("on").value as String,
+                            chi.child("state").value as String,
                             chi.child("turningOn").value as String))
                     }
                     Log.i("firebase", "arr: $timerList")
