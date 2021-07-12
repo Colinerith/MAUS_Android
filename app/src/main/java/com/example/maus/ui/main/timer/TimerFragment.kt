@@ -59,14 +59,6 @@ class TimerFragment : Fragment() {
 //        requireView().findViewById<RecyclerView>(R.id.timerRecyclerView).addItemDecoration(
 //            DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
 //        ) // 구분선 넣기
-//
-//        Log.d("count:", timerRecyclerViewAdapter.itemCount.toString())
-//        if(timerRecyclerViewAdapter.itemCount == 0){
-//            view?.findViewById<View>(R.id.no_timers_layout)?.visibility = View.VISIBLE
-//        }
-//        else{
-//            view?.findViewById<View>(R.id.no_timers_layout)?.visibility = View.GONE
-//        }
 
         timerRecyclerViewAdapter.submitList(timerList)
 
@@ -87,6 +79,7 @@ class TimerFragment : Fragment() {
                 timerList.clear()
                 
                 if(dataSnapshot.hasChildren()){
+                    view?.findViewById<View>(R.id.no_timers_layout)?.visibility = View.GONE
                     //자식들을 하나씩 리스트에 넣음
                     for (chi in dataSnapshot.children){
                         Log.i("firebase", "child ${chi.key}: $chi")
@@ -106,15 +99,6 @@ class TimerFragment : Fragment() {
                 else{
                     view?.findViewById<View>(R.id.no_timers_layout)?.visibility = View.VISIBLE
                 }
-
-//                ref.child("state").get().addOnSuccessListener {
-//                    Log.i("firebase", "Got value ${it.value}")
-//                    value = it.value as String
-//                    //initialized = true
-//
-//                }.addOnFailureListener{
-//                    Log.e("firebase", "Error getting data", it)
-//                }
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.w("firebase", "loadPost:onCancelled", databaseError.toException())
@@ -122,4 +106,9 @@ class TimerFragment : Fragment() {
         }
         ref.addValueEventListener(postListener)
     }
+
+//    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+//        Log.d("TouchEventTest", "called dispatchTouchEvent() in CustomView")
+//        return super.dispatchTouchEvent(ev)
+//    }
 }
