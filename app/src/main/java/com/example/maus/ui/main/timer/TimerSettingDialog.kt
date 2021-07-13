@@ -161,4 +161,9 @@ class TimerSettingDialog(context: Context) {
     fun showDialog(){
         dialog.show()
     }
+    
+    //할일
+    // 키보드 내리기
+    // 날짜 받아오기
+    // 삭제하기
 }
