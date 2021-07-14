@@ -9,75 +9,78 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="24dp"
-        android:paddingTop="16dp"
-        android:paddingRight="24dp"
-        android:paddingBottom="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/emailTextView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="email: email@email.com"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:layout_height="match_parent"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/wifiName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="wifi: iptime"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/emailTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="email: email@email.com"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/wifiPw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="pw: rjsemfwlak"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/wifiName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="wifi: iptime"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="location: 121.33, 37.21"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/wifiPw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="pw: rjsemfwlak"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/version"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="version: 1.01"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="version: 1.01"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/howToUse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="How To Use"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="location: 121.33, 37.21"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon" />
+            <TextView
+                android:id="@+id/howToUse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="How To Use"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
 
         <CalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
