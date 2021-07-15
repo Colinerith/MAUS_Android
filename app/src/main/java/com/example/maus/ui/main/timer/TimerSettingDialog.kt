@@ -4,10 +4,13 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.*
+import androidx.core.widget.addTextChangedListener
 import com.example.maus.R
 import com.example.maus.data.TimerItem
 import com.google.android.material.chip.Chip
@@ -28,6 +31,7 @@ class TimerSettingDialog(context: Context) {
     private var mode = "create"
     private var path = "Timer/a"
     private var dateStr = "null"
+    lateinit var datePicker: TimerSettingDateDialog
 
     fun create(){
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -65,6 +69,21 @@ class TimerSettingDialog(context: Context) {
             }
         }
 
+        datedayTextView.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                for(i in 0..6)
+                    chips[i].isChecked = false
+            }
+        })
+
         // 취소 버튼
         val cancelBtn = dialog.findViewById<Button>(R.id.cancelBtn)
         cancelBtn.setOnClickListener{
@@ -100,7 +119,7 @@ class TimerSettingDialog(context: Context) {
         val dateBtn = dialog.findViewById<ImageButton>(R.id.dateBtn)
         dateBtn.setOnClickListener{
             val dialog2 = TimerSettingDateDialog(context)
-            dialog2.create()
+            dialog2.create(datedayTextView)
         }
     }
 
@@ -161,7 +180,8 @@ class TimerSettingDialog(context: Context) {
     fun showDialog(){
         dialog.show()
     }
-    
+
+
     //할일
     // 키보드 내리기
     // 날짜 받아오기

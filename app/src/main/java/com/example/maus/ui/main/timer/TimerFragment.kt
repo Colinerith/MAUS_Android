@@ -39,6 +39,7 @@ class TimerFragment : Fragment() {
         addBtn.setOnClickListener {
             val dialog = TimerSettingDialog(root.context)
             dialog.create()
+
             dialog.showDialog()
         }
 

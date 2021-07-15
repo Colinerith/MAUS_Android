@@ -8,14 +8,17 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.DatePicker
+import android.widget.TextView
 import android.widget.Toast
 import com.example.maus.R
+import java.time.Year
 
 class TimerSettingDateDialog(context: Context) {
     private val dialog = Dialog(context)
     val context = context
+    lateinit var datePicker: DatePicker
 
-    fun create(){
+    fun create(dateDayTextView: TextView){
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_date_setting)
@@ -30,15 +33,23 @@ class TimerSettingDateDialog(context: Context) {
             dialog.dismiss()
         }
 
-        val datePicker = dialog.findViewById<DatePicker>(R.id.datePicker)
+        datePicker = dialog.findViewById<DatePicker>(R.id.datePicker)
 
         val saveDateBtn = dialog.findViewById<Button>(R.id.saveDateBtn)
         saveDateBtn.setOnClickListener{
             Toast.makeText(context,"${datePicker.month + 1} : ${datePicker.dayOfMonth}", Toast.LENGTH_SHORT).show()
+            dateDayTextView.text = "${datePicker.year}.${datePicker.month + 1}.${datePicker.dayOfMonth}"
+
+            dialog.dismiss()
         }
 
         //확인버튼 누르면 date 값을 넘겨야 함
 
         dialog.show()
     }
+
+//    interface DialogListener{
+//        fun onSaveClick(year:Int, month:Int, day:Int)
+//        fun onCancelClick()
+//    }
 }
