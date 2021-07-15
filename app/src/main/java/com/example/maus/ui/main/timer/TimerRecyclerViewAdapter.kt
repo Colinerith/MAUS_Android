@@ -2,12 +2,14 @@ package com.example.maus.ui.main.timer
 
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.res.TypedArrayUtils.getString
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,9 @@ import com.example.maus.R
 import com.example.maus.data.TimerItem
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
     RecyclerView.Adapter<TimerRecyclerViewAdapter.ViewHolder>() {
@@ -40,18 +45,50 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
     }
 
     // 생성된 View에 보여줄 데이터 결정
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val hour = timerList[position].hour
         val minute = timerList[position].minute
-        val time = if(hour.toInt() > 12) {"${(hour.toInt() - 12)}:$minute PM"}
-                    else "$hour:$minute AM"
+        //var temp = LocalDateTime.of(0, 0, 0, hour.toInt(), minute.toInt())
+        //var time = temp.format(DateTimeFormatter.ofPattern("HH:mm"))
+
+        var time = ""
+//        val minuteModified = LocalDateTime.of(0, 0, 0, 0, minute.toInt()).format(DateTimeFormatter.ofPattern("MM"))
+//        var hourModified = ""
+        if(hour.toInt() > 12)
+            time = "${LocalDateTime.of(1, 1, 1, hour.toInt()-12, minute.toInt()).format(DateTimeFormatter.ofPattern("HH:MM"))} PM"
+        else if (hour.toInt() == 12)
+            time = "${LocalDateTime.of(1, 1, 1, hour.toInt(), minute.toInt()).format(DateTimeFormatter.ofPattern("HH:MM"))} PM"
+        else
+            time = "${LocalDateTime.of(1, 1, 1, hour.toInt(), minute.toInt()).format(DateTimeFormatter.ofPattern("HH:MM"))} AM"
+
+
+//        if(hour.toInt() >= 22){ // pm 10 ~ 12
+//            if(minute.toInt() < 10)
+//                time = "${hour.toInt() - 12}:0$minute PM"
+//            else
+//                time = "${hour.toInt() - 12}:$minute PM"
+//        }
+//        else if(hour.toInt() > 12){ // pm 1~9
+//
+//        }
+//        else if(hour.toInt() == 12){
+//
+//        }
+//        else if(hour.toInt()<10){
+//
+//        }
+//        if(hour.toInt() < 10){
+//            if(minute.toInt()<10)
+//                time = "0$hour:0$minute AM"
+//        }
         val day = timerList[position].day
         val date = timerList[position].date
         var dateDay = ""
         if (date != "null") dateDay = date
         else {
             if(day == "1111111") dateDay = "Everyday"
-            else if (day != null){
+            else {
                 var dayStr = ""
                 for (i in 0..6)
                     if (day[i] == '1') dayStr += viewHolder.days[i] + ", "
@@ -85,7 +122,6 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
         viewHolder.itemView.setOnClickListener {
             val dialog = TimerSettingDialog(viewHolder.context)
             dialog.setting(hour.toInt(), minute.toInt(), date, day, turningOn, timerList[position].key)
-
         }
     
         // 타이머 시간

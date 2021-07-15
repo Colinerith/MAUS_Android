@@ -4,12 +4,14 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.core.widget.addTextChangedListener
 import com.example.maus.R
 import com.example.maus.data.TimerItem
@@ -17,6 +19,8 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.time.LocalDate
+import java.util.*
 
 class TimerSettingDialog(context: Context) {
     private val dialog = Dialog(context)
@@ -31,8 +35,8 @@ class TimerSettingDialog(context: Context) {
     private var mode = "create"
     private var path = "Timer/a"
     private var dateStr = "null"
-    lateinit var datePicker: TimerSettingDateDialog
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun create(){
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
@@ -43,6 +47,7 @@ class TimerSettingDialog(context: Context) {
 
         timePicker = dialog.findViewById(R.id.time)
         datedayTextView = dialog.findViewById(R.id.settingDateDayTextView)
+         datedayTextView.text = LocalDate.now().plusDays(1).toString()
         radioButtonOn = dialog.findViewById(R.id.radioButtonOn)
         radioButtonOff = dialog.findViewById(R.id.radioButtonOff)
         radioButtonOn.isChecked = true
@@ -65,24 +70,10 @@ class TimerSettingDialog(context: Context) {
                 else if(dayStr != "")
                     datedayTextView.text = dayStr
                 else
-                    datedayTextView.text = "2020.1.1"
+                    datedayTextView.text = LocalDate.now().plusDays(1).toString()
             }
         }
 
-        datedayTextView.addTextChangedListener(object: TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                TODO("Not yet implemented")
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                for(i in 0..6)
-                    chips[i].isChecked = false
-            }
-        })
 
         // 취소 버튼
         val cancelBtn = dialog.findViewById<Button>(R.id.cancelBtn)
@@ -124,6 +115,7 @@ class TimerSettingDialog(context: Context) {
     }
 
     // 리스트에서 아이템을 클릭해 다이얼로그 띄웠을 경우 값 세팅
+    @RequiresApi(Build.VERSION_CODES.O)
     fun setting(hour:Int, minute:Int, date:String, day:String, turningOn:Boolean, key:String){
         saveKey = key // 해당 아이템의 database 키 값
         mode = "modify" // 수정 모드로 전환
@@ -183,7 +175,7 @@ class TimerSettingDialog(context: Context) {
 
 
     //할일
+    //날짜 db에 저장(추가, 수정)
     // 키보드 내리기
-    // 날짜 받아오기
     // 삭제하기
 }

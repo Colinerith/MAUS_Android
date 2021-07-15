@@ -4,13 +4,16 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.maus.R
+import java.time.LocalDate
 import java.time.Year
 
 class TimerSettingDateDialog(context: Context) {
@@ -18,9 +21,10 @@ class TimerSettingDateDialog(context: Context) {
     val context = context
     lateinit var datePicker: DatePicker
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun create(dateDayTextView: TextView){
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_date_setting)
 
         //크기
@@ -34,22 +38,28 @@ class TimerSettingDateDialog(context: Context) {
         }
 
         datePicker = dialog.findViewById<DatePicker>(R.id.datePicker)
+        datePicker.init(LocalDate.now().year, LocalDate.now().monthValue - 1, LocalDate.now().dayOfMonth + 1, null)
 
         val saveDateBtn = dialog.findViewById<Button>(R.id.saveDateBtn)
         saveDateBtn.setOnClickListener{
-            Toast.makeText(context,"${datePicker.month + 1} : ${datePicker.dayOfMonth}", Toast.LENGTH_SHORT).show()
-            dateDayTextView.text = "${datePicker.year}.${datePicker.month + 1}.${datePicker.dayOfMonth}"
-
+            val y = datePicker.year
+            val m = datePicker.month + 1
+            val d = datePicker.dayOfMonth
+            if(m< 10){
+                if(d<10)
+                    dateDayTextView.text = "$y-0$m-0$d"
+                else
+                    dateDayTextView.text = "$y-0$m-$d"
+            }
+            else{
+                if(d<10)
+                    dateDayTextView.text = "$y-$m-0$d"
+                else
+                    dateDayTextView.text = "$y-$m-$d"
+            }
             dialog.dismiss()
         }
 
-        //확인버튼 누르면 date 값을 넘겨야 함
-
         dialog.show()
     }
-
-//    interface DialogListener{
-//        fun onSaveClick(year:Int, month:Int, day:Int)
-//        fun onCancelClick()
-//    }
 }

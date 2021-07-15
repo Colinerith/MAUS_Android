@@ -1,13 +1,16 @@
 package com.example.maus.ui.main.timer
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 //import androidx.navigation.NavController
@@ -24,6 +27,7 @@ class TimerFragment : Fragment() {
     private lateinit var timerRecyclerViewAdapter: TimerRecyclerViewAdapter
     private lateinit var ref : DatabaseReference
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("CutPasteId")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,6 +61,7 @@ class TimerFragment : Fragment() {
                 false
             )
         requireView().findViewById<RecyclerView>(R.id.timerRecyclerView).adapter = this.timerRecyclerViewAdapter
+
 //        requireView().findViewById<RecyclerView>(R.id.timerRecyclerView).addItemDecoration(
 //            DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
 //        ) // 구분선 넣기
