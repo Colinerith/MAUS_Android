@@ -15,6 +15,6 @@
         android:layout_height="401dp"
         android:layout_gravity="center"
         android:cropToPadding="true"
-        android:src="@drawable/switch_off_gray" />
+        android:src="@drawable/switch_off_noline" />
 
 </FrameLayout>

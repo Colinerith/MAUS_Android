@@ -103,7 +103,7 @@ class TimerSettingDialog(context: Context) {
             }
 
             dialog.dismiss()
-            Toast.makeText(dialog.context, "Saved.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(dialog.context, "Saved", Toast.LENGTH_SHORT).show()
         }
 
         // 날짜를 지정할 수 있는 달력 버튼

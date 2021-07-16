@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.res.TypedArrayUtils.getString
@@ -23,7 +24,7 @@ import java.time.format.DateTimeFormatter
 
 class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
     RecyclerView.Adapter<TimerRecyclerViewAdapter.ViewHolder>() {
-
+    //lateinit var context:Context
     // ViewHolder단위 객체로 View의 데이터 설정
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var timeTextView: TextView = view.findViewById(R.id.timeTextView)
@@ -49,9 +50,6 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val hour = timerList[position].hour
         val minute = timerList[position].minute
-        //var temp = LocalDateTime.of(0, 0, 0, hour.toInt(), minute.toInt())
-        //var time = temp.format(DateTimeFormatter.ofPattern("HH:mm"))
-
         var time = ""
         Log.d("viewholder: ", "$hour:${minute.toInt()}")
         if(hour.toInt() > 12)
@@ -61,26 +59,6 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
         else
             time = "${LocalDateTime.of(1, 1, 1, hour.toInt(), minute.toInt()).format(DateTimeFormatter.ofPattern("HH:mm"))} AM"
 
-
-//        if(hour.toInt() >= 22){ // pm 10 ~ 12
-//            if(minute.toInt() < 10)
-//                time = "${hour.toInt() - 12}:0$minute PM"
-//            else
-//                time = "${hour.toInt() - 12}:$minute PM"
-//        }
-//        else if(hour.toInt() > 12){ // pm 1~9
-//
-//        }
-//        else if(hour.toInt() == 12){
-//
-//        }
-//        else if(hour.toInt()<10){
-//
-//        }
-//        if(hour.toInt() < 10){
-//            if(minute.toInt()<10)
-//                time = "0$hour:0$minute AM"
-//        }
         val day = timerList[position].day
         val date = timerList[position].date
         var dateDay = ""
@@ -113,15 +91,24 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
                 viewHolder.stateSwitch.isChecked = true
             }
             state = !state
-            //ref.child("state").setValue((!state).toString()) //]
             Log.d("switch: ", state.toString())
         }
 
-        // 아이템 클릭
+        // 아이템 클릭 - 수정 팝업
         viewHolder.itemView.setOnClickListener {
             val dialog = TimerSettingDialog(viewHolder.context)
             dialog.setting(hour.toInt(), minute.toInt(), date, day, turningOn, timerList[position].key)
         }
+        // 아이템 롱클릭 - 삭제 팝업
+        viewHolder.itemView.setOnLongClickListener(object:View.OnLongClickListener {
+            override fun onLongClick(v: View?): Boolean {
+                //Toast.makeText(viewHolder.context, "롱클릭", Toast.LENGTH_SHORT).show()
+                val dialog = TimerDeleteDialog(viewHolder.context)
+                dialog.create(timerList[position].key)
+                return true
+            }
+        })
+
     
         // 타이머 시간
         viewHolder.timeTextView.text = time

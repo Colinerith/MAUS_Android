@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
     tools:context=".ui.main.timer.TimerFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +19,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="8dp"
             android:background="@android:color/transparent"
+            android:clickable="true"
             android:contentDescription="@string/add_timer"
             android:scaleType="centerInside"
             android:src="@drawable/add"

@@ -76,9 +76,9 @@ class SwitchFragment : Fragment() {
     // 스위치의 이미지 변경
     private fun switchImageToggle(switchBtn:ImageView){
         if(state == "1")
-            switchBtn.setImageResource(R.drawable.switch_on_gray)
+            switchBtn.setImageResource(R.drawable.switch_on_noline)
         else
-            switchBtn.setImageResource(R.drawable.switch_off_gray)
+            switchBtn.setImageResource(R.drawable.switch_off_noline)
     }
     
     // database state 변경
