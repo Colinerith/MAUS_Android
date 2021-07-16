@@ -53,14 +53,13 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
         //var time = temp.format(DateTimeFormatter.ofPattern("HH:mm"))
 
         var time = ""
-//        val minuteModified = LocalDateTime.of(0, 0, 0, 0, minute.toInt()).format(DateTimeFormatter.ofPattern("MM"))
-//        var hourModified = ""
+        Log.d("viewholder: ", "$hour:${minute.toInt()}")
         if(hour.toInt() > 12)
-            time = "${LocalDateTime.of(1, 1, 1, hour.toInt()-12, minute.toInt()).format(DateTimeFormatter.ofPattern("HH:MM"))} PM"
+            time = "${LocalDateTime.of(1, 1, 1, hour.toInt()-12, minute.toInt()).format(DateTimeFormatter.ofPattern("HH:mm"))} PM"
         else if (hour.toInt() == 12)
-            time = "${LocalDateTime.of(1, 1, 1, hour.toInt(), minute.toInt()).format(DateTimeFormatter.ofPattern("HH:MM"))} PM"
+            time = "${LocalDateTime.of(1, 1, 1, hour.toInt(), minute.toInt()).format(DateTimeFormatter.ofPattern("HH:mm"))} PM"
         else
-            time = "${LocalDateTime.of(1, 1, 1, hour.toInt(), minute.toInt()).format(DateTimeFormatter.ofPattern("HH:MM"))} AM"
+            time = "${LocalDateTime.of(1, 1, 1, hour.toInt(), minute.toInt()).format(DateTimeFormatter.ofPattern("HH:mm"))} AM"
 
 
 //        if(hour.toInt() >= 22){ // pm 10 ~ 12

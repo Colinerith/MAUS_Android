@@ -45,18 +45,20 @@ class TimerSettingDateDialog(context: Context) {
             val y = datePicker.year
             val m = datePicker.month + 1
             val d = datePicker.dayOfMonth
+            var dateStr = ""
             if(m< 10){
                 if(d<10)
-                    dateDayTextView.text = "$y-0$m-0$d"
+                    dateStr = "$y-0$m-0$d"
                 else
-                    dateDayTextView.text = "$y-0$m-$d"
+                    dateStr = "$y-0$m-$d"
             }
             else{
                 if(d<10)
-                    dateDayTextView.text = "$y-$m-0$d"
+                    dateStr = "$y-$m-0$d"
                 else
-                    dateDayTextView.text = "$y-$m-$d"
+                    dateStr = "$y-$m-$d"
             }
+            dateDayTextView.text = dateStr
             dialog.dismiss()
         }
 

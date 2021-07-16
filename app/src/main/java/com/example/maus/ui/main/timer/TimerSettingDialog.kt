@@ -34,7 +34,7 @@ class TimerSettingDialog(context: Context) {
     private var saveKey = ""
     private var mode = "create"
     private var path = "Timer/a"
-    private var dateStr = "null"
+    //private var dateStr = "null"
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun create(){
@@ -111,6 +111,8 @@ class TimerSettingDialog(context: Context) {
         dateBtn.setOnClickListener{
             val dialog2 = TimerSettingDateDialog(context)
             dialog2.create(datedayTextView)
+            //dateStr = datedayTextView.text as String
+            //Log.d("dateStr: ",dateStr)
         }
     }
 
@@ -123,8 +125,10 @@ class TimerSettingDialog(context: Context) {
 
         timePicker.hour = hour
         timePicker.minute = minute
-        if(date != "null")
+        if(date != "null") {
             datedayTextView.text = date
+            //dateStr = date
+        }
         else {
             var dayStr = ""
             if(day == "1111111") {
@@ -149,21 +153,21 @@ class TimerSettingDialog(context: Context) {
 
     // 현재 다이얼로그의 값을 TimerItem 형태로 반환
     private fun getDialogData(): TimerItem {
+        var date = datedayTextView.text as String
         var day = "" //
         for(i in 0..6)
             if(chips[i].isChecked) {
                 day += "1"
-                dateStr = "null"
+                date = "null"
             }
             else
                 day += "0"
 
-        val date = dateStr //
+        Log.d("date :", date)
+
         val hour = timePicker.hour.toString()
         val minute = timePicker.minute.toString()
         val turningOn = radioButtonOn.isChecked
-
-
 
         return TimerItem("", date, day, hour, minute, "1", turningOn)
     }
