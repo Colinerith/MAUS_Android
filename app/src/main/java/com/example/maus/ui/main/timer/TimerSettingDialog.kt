@@ -177,9 +177,6 @@ class TimerSettingDialog(context: Context) {
         dialog.show()
     }
 
-
     //할일
-    //날짜 db에 저장(추가, 수정)
     // 키보드 내리기
-    // 삭제하기
 }
