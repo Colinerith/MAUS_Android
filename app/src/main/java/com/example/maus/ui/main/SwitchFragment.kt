@@ -40,7 +40,7 @@ class SwitchFragment : Fragment() {
 
     // 페이지 진입 시 state값 한 번 읽기
     private fun readOnce(ref : DatabaseReference, switchBtn:ImageView){
-        ref.child("state").get().addOnSuccessListener {
+        ref.get().addOnSuccessListener {
             Log.i("firebaseStart", "Got value ${it.value}")
             state = it.value as String
             initialized = true
@@ -85,11 +85,11 @@ class SwitchFragment : Fragment() {
     private fun firebaseStateToggle(ref : DatabaseReference){
         if(state == "1"){
             state = "0"
-            ref.child("state").setValue(state)
+            ref.setValue(state)
         }
         else {
             state = "1"
-            ref.child("state").setValue(state)
+            ref.setValue(state)
         }
     }
 }

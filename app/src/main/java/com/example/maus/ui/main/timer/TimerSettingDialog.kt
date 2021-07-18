@@ -110,7 +110,7 @@ class TimerSettingDialog(context: Context) {
         val dateBtn = dialog.findViewById<ImageButton>(R.id.dateBtn)
         dateBtn.setOnClickListener{
             val dialog2 = TimerSettingDateDialog(context)
-            dialog2.create(datedayTextView)
+            dialog2.create(datedayTextView, chips)
             //dateStr = datedayTextView.text as String
             //Log.d("dateStr: ",dateStr)
         }

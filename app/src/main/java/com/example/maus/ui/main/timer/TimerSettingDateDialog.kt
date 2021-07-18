@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.maus.R
+import com.google.android.material.chip.Chip
 import java.time.LocalDate
 import java.time.Year
 
@@ -22,7 +23,7 @@ class TimerSettingDateDialog(context: Context) {
     lateinit var datePicker: DatePicker
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun create(dateDayTextView: TextView){
+    fun create(dateDayTextView: TextView, chips: List<Chip>){
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_date_setting)
@@ -46,19 +47,22 @@ class TimerSettingDateDialog(context: Context) {
             val m = datePicker.month + 1
             val d = datePicker.dayOfMonth
             var dateStr = ""
-            if(m< 10){
+            dateStr = if(m< 10){
                 if(d<10)
-                    dateStr = "$y-0$m-0$d"
+                    "$y-0$m-0$d"
                 else
-                    dateStr = "$y-0$m-$d"
-            }
-            else{
+                    "$y-0$m-$d"
+            } else{
                 if(d<10)
-                    dateStr = "$y-$m-0$d"
+                    "$y-$m-0$d"
                 else
-                    dateStr = "$y-$m-$d"
+                    "$y-$m-$d"
             }
             dateDayTextView.text = dateStr
+
+            for(i in 0..6)
+                chips[i].isChecked = false
+
             dialog.dismiss()
         }
 

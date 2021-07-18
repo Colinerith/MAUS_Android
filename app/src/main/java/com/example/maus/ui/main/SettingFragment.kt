@@ -24,7 +24,7 @@ class SettingFragment : Fragment() {
         val emailTextView = root.findViewById<TextView>(R.id.email)
         val wifiNameTextView = root.findViewById<TextView>(R.id.wifiName)
         val wifiPwTextView = root.findViewById<TextView>(R.id.wifiPw)
-        val howToUseTextView = root.findViewById<TextView>(R.id.howToUse)
+        //val howToUseTextView = root.findViewById<TextView>(R.id.howToUse)
         val locationTextView = root.findViewById<TextView>(R.id.location)
 
         val ref : DatabaseReference = database.getReference(path)
