@@ -12,7 +12,7 @@ class SwitchFragment : Fragment() {
     private var database = FirebaseDatabase.getInstance()
     private lateinit var state:String
     private var initialized = false // state값 초기화 이후에 사용할 수 있도록
-    private var path = "User/a"
+    private var path = "Switch/a/state"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,7 +56,7 @@ class SwitchFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val post = dataSnapshot.value
                 Log.i("firebase", "Got value2 $post")
-                ref.child("state").get().addOnSuccessListener {
+                ref.get().addOnSuccessListener {
                     Log.i("firebase", "Got value ${it.value}")
                     state = it.value as String
                     initialized = true

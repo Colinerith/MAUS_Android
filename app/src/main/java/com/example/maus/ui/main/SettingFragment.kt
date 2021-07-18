@@ -1,6 +1,7 @@
 package com.example.maus.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.maus.R
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class SettingFragment : Fragment() {
     private var database = FirebaseDatabase.getInstance()
-    private lateinit var state:String
     private var path = "User/a"
 
     override fun onCreateView(
@@ -28,10 +27,33 @@ class SettingFragment : Fragment() {
         val howToUseTextView = root.findViewById<TextView>(R.id.howToUse)
         val locationTextView = root.findViewById<TextView>(R.id.location)
 
+        val ref : DatabaseReference = database.getReference(path)
 
-        howToUseTextView.setOnClickListener {
-            val dialog =
+        //리스너 등록
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val post = dataSnapshot.value
+                Log.i("firebase", "Got value2 $post")
+                ref.get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    //state = it.value as String
+                    emailTextView.text = it.child("email").value as String
+                    wifiNameTextView.text = it.child("wifiName").value as String
+                    wifiPwTextView.text = it.child("wifiPw").value as String
+                    locationTextView.text = it.child("location").value as String
+                }.addOnFailureListener{
+                    Log.e("firebase", "Error getting data", it)
+                }
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w("firebase", "loadPost:onCancelled", databaseError.toException())
+            }
         }
+        ref.addValueEventListener(postListener)
+
+//        howToUseTextView.setOnClickListener {
+//            val dialog =
+//        }
         return root
     }
 }
