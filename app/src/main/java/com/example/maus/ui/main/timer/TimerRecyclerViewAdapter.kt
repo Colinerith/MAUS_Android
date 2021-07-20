@@ -1,6 +1,10 @@
 package com.example.maus.ui.main.timer
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Context.ALARM_SERVICE
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.util.Log
@@ -12,6 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.res.TypedArrayUtils.getString
 import androidx.recyclerview.widget.RecyclerView
 import com.example.maus.R
@@ -78,17 +83,37 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
             if (turningOn) viewHolder.context.getString(R.string.turningOn)
             else viewHolder.context.getString(R.string.turningOff)
 
-        // on/off switch 클릭
+        // on/off switch 클릭 (토글)
         viewHolder.stateSwitch.setOnClickListener {
             //viewHolder.stateSwitch.isChecked = !viewHolder.stateSwitch.isChecked
             val ref : DatabaseReference = FirebaseDatabase.getInstance().getReference(viewHolder.path + "/" + timerList[position].key)
-            if(state) {
+            if(state) { // 끄기
                 ref.child("state").setValue("0")
                 viewHolder.stateSwitch.isChecked = false
             }
-            else {
+            else { // 켜기
                 ref.child("state").setValue("1")
                 viewHolder.stateSwitch.isChecked = true
+
+                val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+
+                val intent = Intent(viewHolder.context,MyReceiver::class.java)
+                val pendingIntent = PendingIntent.getBroadcast(
+                        viewHolder.context, 0, intent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                )
+
+                val repeatInterval : Long = ALARM_TIMER * 1000L
+                val calendar = Calendar.getInstance().apply {
+                    timeInMillis = System.currentTimeMillis()
+                    set(Calendar.HOUR_OF_DAY,5)
+                    set(Calendar.MINUTE,30)
+                }
+                alarmManager.setRepeating(
+                        AlarmManager.RTC_WAKEUP,
+                        calendar.timeInMillis,
+                        repeatInterval,
+                        pendingIntent)
             }
             state = !state
             Log.d("switch: ", state.toString())

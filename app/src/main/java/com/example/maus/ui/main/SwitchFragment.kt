@@ -12,7 +12,7 @@ class SwitchFragment : Fragment() {
     private var database = FirebaseDatabase.getInstance()
     private lateinit var state:String
     private var initialized = false // state값 초기화 이후에 사용할 수 있도록
-    private var path = "Switch/a/state"
+    private var path = "Switch/a"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +40,7 @@ class SwitchFragment : Fragment() {
 
     // 페이지 진입 시 state값 한 번 읽기
     private fun readOnce(ref : DatabaseReference, switchBtn:ImageView){
-        ref.get().addOnSuccessListener {
+        ref.child("state").get().addOnSuccessListener {
             Log.i("firebaseStart", "Got value ${it.value}")
             state = it.value as String
             initialized = true
@@ -56,7 +56,7 @@ class SwitchFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val post = dataSnapshot.value
                 Log.i("firebase", "Got value2 $post")
-                ref.get().addOnSuccessListener {
+                ref.child("state").get().addOnSuccessListener {
                     Log.i("firebase", "Got value ${it.value}")
                     state = it.value as String
                     initialized = true
@@ -85,11 +85,11 @@ class SwitchFragment : Fragment() {
     private fun firebaseStateToggle(ref : DatabaseReference){
         if(state == "1"){
             state = "0"
-            ref.setValue(state)
+            ref.child("state").setValue(state)
         }
         else {
             state = "1"
-            ref.setValue(state)
+            ref.child("state").setValue(state)
         }
     }
 }
