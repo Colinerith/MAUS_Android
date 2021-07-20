@@ -14,6 +14,7 @@ class MyReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val ref : DatabaseReference = database.getReference(path)
 
+        val state = "1"
         ref.child("state").setValue(state)
 
 //        ref.child("state").get().addOnSuccessListener {

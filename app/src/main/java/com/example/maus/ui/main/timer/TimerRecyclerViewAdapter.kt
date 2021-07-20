@@ -26,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
     RecyclerView.Adapter<TimerRecyclerViewAdapter.ViewHolder>() {
@@ -95,24 +97,26 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
                 ref.child("state").setValue("1")
                 viewHolder.stateSwitch.isChecked = true
 
-                val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+                //val a = Context.ALARM_SERVICE
+                val alarmManager = viewHolder.context.getSystemService(ALARM_SERVICE) as AlarmManager
 
                 val intent = Intent(viewHolder.context,MyReceiver::class.java)
                 val pendingIntent = PendingIntent.getBroadcast(
-                        viewHolder.context, 0, intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT
+                        viewHolder.context, 1000, intent,
+                        PendingIntent.FLAG_UPDATE_CURRENT // 있으면 새것으로 업데이트
                 )
 
-                val repeatInterval : Long = ALARM_TIMER * 1000L
+                //val repeatInterval : Long = ALARM_TIMER * 1000L
                 val calendar = Calendar.getInstance().apply {
                     timeInMillis = System.currentTimeMillis()
-                    set(Calendar.HOUR_OF_DAY,5)
-                    set(Calendar.MINUTE,30)
+                    set(Calendar.HOUR_OF_DAY,5) // 시
+                    set(Calendar.MINUTE,30) // 분
                 }
                 alarmManager.setRepeating(
                         AlarmManager.RTC_WAKEUP,
                         calendar.timeInMillis,
-                        repeatInterval,
+                        //repeatInterval,
+                        AlarmManager.INTERVAL_DAY, // 하루에 한 번씩 반복
                         pendingIntent)
             }
             state = !state
@@ -134,7 +138,6 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
             }
         })
 
-    
         // 타이머 시간
         viewHolder.timeTextView.text = time
         // 타이머 날짜 또는 요일
