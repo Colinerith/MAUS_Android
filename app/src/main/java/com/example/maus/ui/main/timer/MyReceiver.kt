@@ -15,15 +15,18 @@ class MyReceiver : BroadcastReceiver() {
         val ref : DatabaseReference = database.getReference(path)
 
         val state = "1"
+        
+        // 수정하기
         ref.child("state").setValue(state)
 
-//        ref.child("state").get().addOnSuccessListener {
-//            Log.i("firebaseStart", "Got value ${it.value}")
-////            state = it.value as String
-////            initialized = true
-////            switchImageToggle(switchBtn)
-//        }.addOnFailureListener{
-//            Log.e("firebase", "Error getting data", it)
-//        }
+        // 한 번 읽기
+        ref.child("state").get().addOnSuccessListener {
+            Log.i("firebaseStart", "Got value ${it.value}")
+//            state = it.value as String
+//            initialized = true
+//            switchImageToggle(switchBtn)
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
     }
 }

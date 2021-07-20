@@ -58,13 +58,13 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
         val hour = timerList[position].hour
         val minute = timerList[position].minute
         var time = ""
-        Log.d("viewholder: ", "$hour:${minute.toInt()}")
-        if(hour.toInt() > 12)
-            time = "${LocalDateTime.of(1, 1, 1, hour.toInt()-12, minute.toInt()).format(DateTimeFormatter.ofPattern("HH:mm"))} PM"
+        //Log.d("viewholder: ", "$hour:${minute.toInt()}")
+        time = if(hour.toInt() > 12)
+            "${LocalDateTime.of(1, 1, 1, hour.toInt()-12, minute.toInt()).format(DateTimeFormatter.ofPattern("HH:mm"))} PM"
         else if (hour.toInt() == 12)
-            time = "${LocalDateTime.of(1, 1, 1, hour.toInt(), minute.toInt()).format(DateTimeFormatter.ofPattern("HH:mm"))} PM"
+            "${LocalDateTime.of(1, 1, 1, hour.toInt(), minute.toInt()).format(DateTimeFormatter.ofPattern("HH:mm"))} PM"
         else
-            time = "${LocalDateTime.of(1, 1, 1, hour.toInt(), minute.toInt()).format(DateTimeFormatter.ofPattern("HH:mm"))} AM"
+            "${LocalDateTime.of(1, 1, 1, hour.toInt(), minute.toInt()).format(DateTimeFormatter.ofPattern("HH:mm"))} AM"
 
         val day = timerList[position].day
         val date = timerList[position].date
@@ -97,20 +97,24 @@ class TimerRecyclerViewAdapter(private var timerList: ArrayList<TimerItem>) :
                 ref.child("state").setValue("1")
                 viewHolder.stateSwitch.isChecked = true
 
-                //val a = Context.ALARM_SERVICE
                 val alarmManager = viewHolder.context.getSystemService(ALARM_SERVICE) as AlarmManager
 
-                val intent = Intent(viewHolder.context,MyReceiver::class.java)
+                val intent = Intent(viewHolder.context, MyReceiver::class.java)
                 val pendingIntent = PendingIntent.getBroadcast(
                         viewHolder.context, 1000, intent,
                         PendingIntent.FLAG_UPDATE_CURRENT // 있으면 새것으로 업데이트
                 )
+                
+                TODO("꺼짐, 켜짐 구분")
+                TODO("요일 반복")
+                TODO("한 번만 울림")
+                TODO("타이머 간 구분")
 
                 //val repeatInterval : Long = ALARM_TIMER * 1000L
                 val calendar = Calendar.getInstance().apply {
                     timeInMillis = System.currentTimeMillis()
-                    set(Calendar.HOUR_OF_DAY,5) // 시
-                    set(Calendar.MINUTE,30) // 분
+                    set(Calendar.HOUR_OF_DAY, hour.toInt()) // 시
+                    set(Calendar.MINUTE, minute.toInt()) // 분
                 }
                 alarmManager.setRepeating(
                         AlarmManager.RTC_WAKEUP,
