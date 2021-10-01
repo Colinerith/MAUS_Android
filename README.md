@@ -8,3 +8,7 @@
     - Delete
     - Modify
 3. Setting Fragment  
+
+
+![image](https://user-images.githubusercontent.com/75845861/135656332-d1fd77f9-af0e-4af4-b013-32bd13918e37.png)
+![image](https://user-images.githubusercontent.com/75845861/135656356-6ad446c2-de2b-48e6-b725-10ceea42b645.png)
